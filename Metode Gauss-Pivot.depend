@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1524623368 source:/home/kmdr7/Documents/Metode Numerik/Praktikum 7/Metode Gauss-Pivot/main.c
+	<stdio.h>
+	<stdlib.h>
+
