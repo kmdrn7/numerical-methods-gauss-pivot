@@ -78,20 +78,25 @@ int main()
     }
     printf("----------+------------------------------ \n\n");
 
-    float hasil[99];
-    int inc=1;
+    float hasil[99], temp = 0;
+    int inc=0;
 
-    for (i=ordo-1; i>=0; i++){
-        hasil[i] = 0;
-        for (j=ordo-1; j>ordo+(inc++)){
-            hasil[i] +=
+    for (i=ordo-1; i>=0; i--){ // i = 2
+        hasil[i] = matriks[i][ordo];
+        temp = matriks[i][ordo]; // temp = hasil
+
+        for (j=ordo-2; j>=0; j--){ // j = 2, j > 2
+            temp -= matriks[i][j]*hasil[ordo-1]; //
         }
+
+        temp /= matriks[i][i]; //
+        hasil[i] = temp; //
     }
-    hasil[2] = matriks[2][3]/matriks[2][2];
-    hasil[1] = (matriks[1][3]-matriks[1][2]*hasil[2]) / matriks[1][1];
-    hasil[0] = (matriks[0][3]-matriks[0][2]*hasil[2] - matriks[0][1]*hasil[1]) / matriks[0][0];
+    //hasil[2] = matriks[2][3]/matriks[2][2];
+    //hasil[1] = (matriks[1][3]-matriks[1][2]*hasil[2]) / matriks[1][1];
+    //hasil[0] = (matriks[0][3]-matriks[0][2]*hasil[2] - matriks[0][1]*hasil[1]) / matriks[0][0];
 
     for (i=0; i<ordo; i++){
-        printf("%c = %g\n", 88+i, x[i]);
+        printf("%c = %.6g\n", 88+i, hasil[i]);
     }
 }
