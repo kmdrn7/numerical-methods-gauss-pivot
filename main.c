@@ -21,36 +21,24 @@ int main()
     float matriks[ordo][ordo+1];
 
     int i, j, k;
-    /**for (i=0; i<ordo; i++){
-        if( ordo == 3 ){
-            printf("Masukkan persamaan ke %d (n n n hasil) \n: ", i+1);
-            scanf("%f %f %f %f", &matriks[i][0], &matriks[i][1], &matriks[i][2], &matriks[i][3]);
+    for (i=0; i<ordo; i++){
+        printf("Masukkan persamaan ke %d : \n", i+1);
+        for (j=0; j<ordo; j++){
+            printf("- konstanta X%d: ", j+1);
+            scanf("%f", &matriks[i][j]);
         }
-    }**/
-
-    matriks[0][0] = 1;
-    matriks[0][1] = 1;
-    matriks[0][2] = 2;
-    matriks[0][3] = 9;
-
-    matriks[1][0] = 2;
-    matriks[1][1] = 4;
-    matriks[1][2] = -3;
-    matriks[1][3] = 1;
-
-    matriks[2][0] = 3;
-    matriks[2][1] = 6;
-    matriks[2][2] = -5;
-    matriks[2][3] = 0;
+        printf("- konstanta hasil %d: ", i+1, j+1);
+        scanf("%f", &matriks[i][ordo]);
+    }
 
     printf("\n");
     printf("Persamaan setelah diubah menjadi matriks : \n");
-    printf("---------+-------------------------------- \n");
+    printf("----------+-------------------------------- \n");
     for (i=0; i<ordo; i++){
         for (j=0; j<ordo; j++){
-            printf("%2g ", matriks[i][j]);
+            printf("%2.2f ", matriks[i][j]);
         }
-        printf(" | %2g ", matriks[i][ordo]);
+        printf(" | %2.2f ", matriks[i][ordo]);
         printf("\n");
     }
     printf("----------+------------------------------ \n\n");
@@ -81,22 +69,18 @@ int main()
     float hasil[99], temp = 0;
     int inc=0;
 
-    for (i=ordo-1; i>=0; i--){ // i = 2
+    for (i=ordo-1; i>=0; i--){
+
         hasil[i] = matriks[i][ordo];
-        temp = matriks[i][ordo]; // temp = hasil
-
-        for (j=ordo-2; j>=0; j--){ // j = 2, j > 2
-            temp -= matriks[i][j]*hasil[ordo-1]; //
+        temp = hasil[i];
+        for (j=ordo-1; j>i; j--){
+            temp -= matriks[i][j]*hasil[j];
         }
-
-        temp /= matriks[i][i]; //
-        hasil[i] = temp; //
+        temp /= matriks[i][i];
+        hasil[i] = temp;
     }
-    //hasil[2] = matriks[2][3]/matriks[2][2];
-    //hasil[1] = (matriks[1][3]-matriks[1][2]*hasil[2]) / matriks[1][1];
-    //hasil[0] = (matriks[0][3]-matriks[0][2]*hasil[2] - matriks[0][1]*hasil[1]) / matriks[0][0];
 
     for (i=0; i<ordo; i++){
-        printf("%c = %.6g\n", 88+i, hasil[i]);
+        printf("%c = %.2f\n", 88+i, hasil[i]);
     }
 }
